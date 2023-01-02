@@ -1,4 +1,4 @@
-# Codespaces Template for Laravel Apps
+# Codespaces Template for Laravel Packages
 
  ## Codespace Setup
  1. Make sure you are signing commits on all repositories, follow this guide:
