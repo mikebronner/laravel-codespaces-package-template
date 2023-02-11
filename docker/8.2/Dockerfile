@@ -46,11 +46,14 @@ RUN apt-get update \
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.2
 
 RUN groupadd --force -g $WWWGROUP sail
+
 # customizations
+## configure passwordless sudo
 RUN useradd -ms /bin/zsh --no-user-group -g $WWWGROUP -u 1337 sail
 RUN adduser sail sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+## set up oh-my-zsh
 USER sail
 RUN sh -c "$(curl -L https://github.com/deluan/zsh-in-docker/releases/download/v1.1.4/zsh-in-docker.sh)" -- \
     -p git \
@@ -62,9 +65,14 @@ RUN sh -c "$(curl -L https://github.com/deluan/zsh-in-docker/releases/download/v
 RUN mv /home/sail/.oh-my-zsh/custom/plugins/zsh-you-should-use /home/sail/.oh-my-zsh/custom/plugins/you-should-use
 RUN mv /home/sail/.oh-my-zsh/custom/plugins/zsh-artisan /home/sail/.oh-my-zsh/custom/plugins/artisan
 USER root
-
 COPY .zshrc /home/sail/.zshrc
 COPY .p10k.zsh /home/sail/.p10k.zsh
+
+## install git hubflow
+RUN cd /home/sail \
+    && git clone https://github.com/datasift/gitflow \
+    && cd gitflow \
+    && ./install.sh
 # end customizations
 
 COPY start-container /usr/local/bin/start-container

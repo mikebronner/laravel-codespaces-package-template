@@ -15,7 +15,6 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "dev-master@dev",
-        "beyondcode/laravel-self-diagnosis": "dev-l9-compatibility@dev",
         "brianium/paratest": "^6.4",
         "fakerphp/faker": "^1.9.1",
         "genealabs/php-coding-standards": "dev-main@dev",
