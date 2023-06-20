@@ -52,8 +52,8 @@
     </rule>
     <rule ref="Generic.Files.LineLength">
         <properties>
-            <property name="lineLimit" value="80"/>
-            <property name="absoluteLineLimit" value="80"/>
+            <property name="lineLimit" value="100"/>
+            <property name="absoluteLineLimit" value="100"/>
         </properties>
     </rule>
 
@@ -114,6 +114,9 @@
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
     </rule>
 
+    <rule ref="SlevomatCodingStandard.Classes.ClassLength.ClassTooLong">
+        <exclude-pattern>/tests/*\.php</exclude-pattern>
+    </rule>
     <rule ref="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength">
         <exclude-pattern>/tests/*\.php</exclude-pattern>
     </rule>
