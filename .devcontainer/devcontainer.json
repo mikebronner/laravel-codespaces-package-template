@@ -6,73 +6,78 @@
     ],
     "service": "laravel.test",
     "workspaceFolder": "/var/www/html",
-    "customizations": {
-        "vscode": {
-            "settings": {},
-            "extensions": [
-                "adrianwilczynski.alpine-js-intellisense",
-                "amiralizadeh9480.laravel-extra-intellisense",
-                "austenc.laravel-blade-spacer",
-                "beyondcode.tinkerwell",
-                "bradlc.vscode-tailwindcss",
-                "christian-kohler.npm-intellisense",
-                "christian-kohler.path-intellisense",
-                "cierra.livewire-vscode",
-                "codingyu.laravel-goto-view",
-                "davidanson.vscode-markdownlint",
-                "eamodio.gitlens",
-                "ecodes.vscode-phpmd",
-                "editorconfig.editorconfig",
-                "ericcheng.codesongclear",
-                "faelv.composer-companion",
-                "file-icons.file-icons",
-                "georgykurian.laravel-ide-helper",
-                "github.codespaces",
-                "github.vscode-pull-request-github",
-                "heybourn.headwind",
-                "irongeek.vscode-env",
-                "mahmoudshahin.laravel-routes",
-                "martybegood.single-editor-tabs",
-                "mechatroner.rainbow-csv",
-                "mehedidracula.php-namespace-resolver",
-                "mikestead.dotenv",
-                "mohamedbenhida.laravel-intellisense",
-                "mrmlnc.vscode-duplicate",
-                "ms-vscode-remote.remote-ssh-edit",
-                "ms-vscode-remote.remote-ssh",
-                "naoray.laravel-goto-components",
-                "oderwat.indent-rainbow",
-                "pcbowers.alpine-intellisense",
-                "redhat.vscode-yaml",
-                "rifi2k.format-html-in-php",
-                "shevaua.phpcs",
-                "shufo.vscode-blade-formatter",
-                "sperovita.alpinejs-syntax-highlight",
-                "streetsidesoftware.code-spell-checker",
-                "syler.ignore",
-                "teabyii.ayu",
-                "usernamehw.errorlens",
-                "vincaslt.highlight-matching-tag",
-                "wakatime.vscode-wakatime",
-                "wongjn.php-sniffer",
-                "WakaTime.vscode-wakatime",
-                "MehediDracula.php-namespace-resolver",
-                "bmewburn.vscode-intelephense-client",
-                "DavidAnson.vscode-markdownlint",
-                "MahmoudShahin.laravel-routes",
-                "Syler.ignore",
-                "IronGeek.vscode-env",
-                "EditorConfig.EditorConfig",
-                "huibizhang.codesnap-plus",
-                "m4ns0ur.base64"
-            ]
-        }
-    },
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+                "aaron-bond.better-comments",
+				"adrianwilczynski.alpine-js-intellisense",
+				"amiralizadeh9480.laravel-extra-intellisense",
+				"austenc.laravel-blade-spacer",
+				"beyondcode.tinkerwell",
+				"bmewburn.vscode-intelephense-client",
+				"bradlc.vscode-tailwindcss",
+				"christian-kohler.npm-intellisense",
+				"christian-kohler.path-intellisense",
+				"cierra.livewire-vscode",
+				"codingyu.laravel-goto-view",
+				"davidanson.vscode-markdownlint",
+				"davidbwaters.macos-modern-theme",
+				"ecodes.vscode-phpmd@1.2.0",
+				"editorconfig.editorconfig",
+				"ericcheng.codesongclear",
+				"faelv.composer-companion",
+				"file-icons.file-icons",
+				"foxundermoon.shell-format",
+				"georgykurian.laravel-ide-helper",
+				"github.codespaces",
+				"GitHub.copilot-chat",
+				"GitHub.copilot-nightly",
+				"github.vscode-pull-request-github",
+				"Gruntfuggly.activitusbar",
+				"heissenbergerlab.php-array-from-json",
+				"heybourn.headwind",
+				"huibizhang.codesnap-plus",
+				"irongeek.vscode-env",
+				"kencocaceo.customvscodeuicss",
+				"m4ns0ur.base64",
+				"maciejdems.add-to-gitignore",
+				"mahmoudshahin.laravel-routes",
+				"martybegood.single-editor-tabs",
+				"mechatroner.rainbow-csv",
+				"mehedidracula.php-namespace-resolver",
+				"mhutchie.git-graph",
+				"mikestead.dotenv",
+				"mohamedbenhida.laravel-intellisense",
+				"mrmlnc.vscode-duplicate",
+				"naoray.laravel-goto-components",
+				"oderwat.indent-rainbow",
+				"pcbowers.alpine-intellisense",
+				"redhat.vscode-yaml",
+				"rifi2k.format-html-in-php",
+				"shevaua.phpcs",
+				"shufo.vscode-blade-formatter",
+				"sperovita.alpinejs-syntax-highlight",
+				"streetsidesoftware.code-spell-checker",
+				"syler.ignore",
+				"teabyii.ayu",
+				"usernamehw.errorlens",
+				"vincaslt.highlight-matching-tag",
+				"WakaTime.vscode-wakatime",
+				"withfig.fig",
+				"wongjn.php-sniffer",
+				"xdebug.php-debug"
+			]
+		}
+	},
     "remoteUser": "sail",
-    "postCreateCommand": "chown -R 1000:1000 /var/www/html",
+    "postCreateCommand": "sudo chown -R 1000:1000 /var/www/html",
     "forwardPorts": [
         80,
-        5432
+        5432,
+        6001,
+        8025,
+        8900
     ],
     "portsAttributes": {
         "80": {
@@ -80,8 +85,23 @@
         },
         "5432": {
             "label": "Postgres"
+        },
+        "6001": {
+            "label": "Web Sockets"
+        },
+        "8025": {
+            "label": "MailHog"
+        },
+        "8900": {
+            "label": "Minio Console"
+        },
+        "9000": {
+            "label": "Minio Host"
         }
-    }
+    },
+    "mounts": [
+        "source=${localEnv:HOME}/.wakatime.cfg,target=/home/sail/.wakatime.cfg,type=bind,consistency=delegated"
+    ]
     // "runServices": [],
     // "shutdownAction": "none",
 }
