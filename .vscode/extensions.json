@@ -1,5 +1,6 @@
 {
     "unwantedRecommendations": [
         "ikappas.phpcs",
+        "linyang95.phpmd"
     ],
 }
